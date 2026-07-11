@@ -4,7 +4,6 @@ A BepInEx 5.4.x (x64) mod for Moonlight Peaks to manage energy consumption and r
 
 ## Features
 - **Energy Optimization:** Adjust energy depletion rates.
-- **Regeneration Tweaks:** Customize how energy regenerates over time.
 - **Configurable:** Fine-tune the balance via the configuration file.
 
 ## Requirements

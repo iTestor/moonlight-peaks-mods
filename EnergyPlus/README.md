@@ -17,5 +17,7 @@ A BepInEx 5.4.x (x64) mod for Moonlight Peaks to manage energy consumption and r
 ## Configuration
 Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. You can edit this file to customize energy-related variables.
 
+*Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
+
 ---
 *Built with BepInEx.*

@@ -11,9 +11,14 @@ obj/
 *.bak
 *.tmp
 *.log
+# ... existing ignored patterns ...
 packages/
 *.nupkg
 *.snupkg
 *.zip
 *.7z
 *.rar
+
+# Releases
+Release/
+TempZip/

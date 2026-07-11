@@ -1,10 +1,11 @@
 # EnergyPlus
 
-A BepInEx 5.4.x (x64) mod for Moonlight Peaks to manage energy consumption and regeneration.
+A BepInEx 5.4.x (x64) mod for Moonlight Peaks to manage energy consumption.
+This mod provides tools to customize the energy usage of your character, allowing for a more tailored gameplay experience.
 
 ## Features
 - **Energy Optimization:** Adjust energy depletion rates.
-- **Configurable:** Fine-tune the balance via the configuration file.
+- **Configurable:** Fine-tune the balance in-game using the BepInEx Configuration Manager.
 
 ## Requirements
 - [BepInEx 5.4.x (x64)](https://github.com/BepInEx/BepInEx/releases)

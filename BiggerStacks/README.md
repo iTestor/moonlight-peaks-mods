@@ -1,6 +1,7 @@
 # BiggerStacks
 
 A BepInEx 5.4.x (x64) mod for Moonlight Peaks to increase stack sizes for items.
+This mod allows players to increase the maximum stack limit of items, making inventory management easier and more efficient.
 
 ## Features
 - **Custom Stack Sizes:** Adjust the maximum stack size for various items to optimize your inventory management.

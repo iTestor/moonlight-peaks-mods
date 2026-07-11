@@ -27,6 +27,11 @@
 Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the [b]Configuration Manager[/b] (default hotkey: [i]F1[/i]).
 Alternatively, you can edit the generated configuration file located in [i]MoonlightPeaks/BepInEx/config/[/i].
 
+[b]Available Settings:[/b]
+[list]
+[*][b]StackSize:[/b] Stack size (Range: 1 to 999). Default: 100.[/*]
+[/list]
+
 [line]
 
 [i]Built with BepInEx.[/i]

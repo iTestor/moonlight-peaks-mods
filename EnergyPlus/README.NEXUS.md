@@ -27,6 +27,12 @@
 Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the [b]Configuration Manager[/b] (default hotkey: [i]F1[/i]).
 Alternatively, you can edit the generated configuration file located in [i]MoonlightPeaks/BepInEx/config/[/i].
 
+[b]Available Settings:[/b]
+[list]
+[*][b]EnergyDrainMultiplier:[/b] Energy drain (Range: 0 to 10). 0 = Infinite energy, 10 = Normal Drain * 10. Default: 1.[/*]
+[*][b]EnergyGainMultiplier:[/b] Energy gain (Range: 0 to 10). 0 = No energy gain, 10 = Normal Gain * 10. Default: 1.[/*]
+[/list]
+
 [line]
 
 [i]Built with BepInEx.[/i]

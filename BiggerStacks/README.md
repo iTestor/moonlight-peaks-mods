@@ -17,7 +17,10 @@ This mod allows players to increase the maximum stack limit of items, making inv
 3. Extract the contents into your `MoonlightPeaks/BepInEx/plugins/` folder.
 
 ## Configuration
-Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. You can edit this file to adjust stack size multipliers or individual item limits. 
+Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. 
+
+**Available Settings:**
+- `StackSize`: Stack size (Range: 1 to 999). Default: 100.
 
 *Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
 

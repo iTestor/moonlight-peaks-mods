@@ -4,7 +4,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 
-namespace EnergyPlus
+namespace ManaPlus
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin
@@ -12,8 +12,8 @@ namespace EnergyPlus
         internal static new ManualLogSource _logger;
         internal static Harmony _harmony;
 
-        public static ConfigEntry<int> EnergyDrainMultiplier;
-        public static ConfigEntry<int> EnergyGainMultiplier;
+        public static ConfigEntry<int> ManaDrainMultiplier;
+        public static ConfigEntry<int> ManaGainMultiplier;
 
         private void Awake()
         {
@@ -21,49 +21,48 @@ namespace EnergyPlus
             _logger = base.Logger;
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
-            EnergyDrainMultiplier = Config.Bind(
+            ManaDrainMultiplier = Config.Bind(
                 "Gameplay",
-                "EnergyDrainMultiplier",
+                "ManaDrainMultiplier",
                 1,
                 new ConfigDescription(
-                    "Energy drain from 0 to 10. 0 = Infinite energy, 10 = Normal Drain * 10.",
+                    "Mana drain from 0 to 10. 0 = Infinite mana, 10 = Normal Drain * 10.",
                     new AcceptableValueRange<int>(0, 10)
                 )
             );
 
-            EnergyGainMultiplier = Config.Bind(
+            ManaGainMultiplier = Config.Bind(
                 "Gameplay",
-                "EnergyGainMultiplier",
+                "ManaGainMultiplier",
                 1,
                 new ConfigDescription(
-                    "Energy gain from 0 to 10. 0 = No energy gain, 10 = Normal Gain * 10.",
+                    "Mana gain from 0 to 10. 0 = No mana gain, 10 = Normal Gain * 10.",
                     new AcceptableValueRange<int>(0, 10)
                 )
             );
 
-            _harmony = new Harmony("dev.kuri.moonlightpeaks.energyplus");
+            _harmony = new Harmony("dev.kuri.moonlightpeaks.manaplus");
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
     }
 
-
-    [HarmonyPatch(typeof(PlayerPersistence), "SubstractEnergy")]
-    static class PlayerPersistence_SubstractEnergy_Patch
+    [HarmonyPatch(typeof(PlayerPersistence), "SubstractMana")]
+    static class PlayerPersistence_SubstractMana_Patch
     {
         static bool Prefix(ref float amount)
         {
-            amount = amount * Plugin.EnergyDrainMultiplier.Value;
+            amount = amount * Plugin.ManaDrainMultiplier.Value;
 
             return true;
         }
     }
 
-    [HarmonyPatch(typeof(PlayerPersistence), "AddEnergy")]
-    static class PlayerPersistence_AddEnergy_Patch
+    [HarmonyPatch(typeof(PlayerPersistence), "AddMana")]
+    static class PlayerPersistence_AddMana_Patch
     {
         static bool Prefix(ref float amount)
         {
-            amount = amount * Plugin.EnergyGainMultiplier.Value;
+            amount = amount * Plugin.ManaGainMultiplier.Value;
 
             return true;
         }

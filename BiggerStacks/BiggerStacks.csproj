@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>BiggerStacks</AssemblyName>
+    <Product>Bigger Stacks for Items</Product>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+    <RootNamespace>BiggerStacks</RootNamespace>
+	  <GameDir Condition="'$(GameDir)' == ''">K:\SteamLibrary\steamapps\common\Moonlight Peaks</GameDir>
+	  <GameDataDir Condition="'$(GameDataDir)' == ''">$(GameDir)\Moonlight Peaks_Data</GameDataDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="6000.3" IncludeAssets="compile" />
+
+	  <Reference Include="Vampire.Runtime">
+		  <HintPath>$(GameDataDir)\Managed\Vampire.Runtime.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
+  </ItemGroup>
+
+	<Target Name="CopyPluginToGame" AfterTargets="Build" Condition="Exists('$(GameDir)\BepInEx\plugins')">
+		<PropertyGroup>
+			<PluginOutDir>$(GameDir)\BepInEx\plugins</PluginOutDir>
+		</PropertyGroup>
+		<MakeDir Directories="$(PluginOutDir)" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginOutDir)" SkipUnchangedFiles="true" />
+	</Target>
+</Project>

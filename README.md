@@ -15,3 +15,6 @@ Mod to manage mana consumption.
 
 ### [InstantCrafting](InstantCrafting/README.md)
 Mod to make all crafting recipes instantaneous.
+
+### [NeverEndingCan](NeverEndingCan/README.md)
+Mod to make the watering can never run out of water.

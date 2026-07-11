@@ -8,6 +8,7 @@ A BepInEx 5.4.x (x64) mod for Moonlight Peaks to manage energy consumption and r
 
 ## Requirements
 - [BepInEx 5.4.x (x64)](https://github.com/BepInEx/BepInEx/releases)
+- [Optional: BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases)
 
 ## Installation
 1. Ensure [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx/releases) is installed in your Moonlight Peaks game folder.

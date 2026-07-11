@@ -1,6 +1,6 @@
 [center][size=5]NeverEndingCan[/size][/center]
 
-[b]A BepInEx 5.4.x (x64) mod for Moonlight Peaks to make the watering can never run out of water.[/b]
+[b]A mod for Moonlight Peaks to make the watering can never run out of water.[/b]
 
 [line]
 
@@ -27,9 +27,9 @@
 Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the [b]Configuration Manager[/b] (default hotkey: [i]F1[/i]).
 Alternatively, you can edit the generated configuration file located in [i]MoonlightPeaks/BepInEx/config/[/i].
 
-[b]Available Settings:[/b]
+[color=#6F51B1][b]Available Settings:[/b][/color]
 [list]
-[*][b]NeverEndingEnabled:[/b] Enable or disable the infinite water effect. Default: True.[/*]
+[*][b]UnlimitedEnabled:[/b] Enable or disable the infinite water effect. Default: True.[/*]
 [/list]
 
 [line]

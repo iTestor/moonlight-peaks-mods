@@ -35,7 +35,10 @@ namespace InstantCrafting
         [HarmonyPostfix]
         public static void Postfix(ref int __result)
         {
-            __result = 0;
+            if(Plugin.InstantEnabled.Value)
+            {
+                __result = 0;
+            }
         }
     }
 }

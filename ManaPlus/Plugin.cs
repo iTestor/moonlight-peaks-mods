@@ -9,7 +9,7 @@ namespace ManaPlus
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin
     {
-        internal static new ManualLogSource _logger;
+        internal static ManualLogSource _logger;
         internal static Harmony _harmony;
 
         public static ConfigEntry<int> ManaDrainMultiplier;

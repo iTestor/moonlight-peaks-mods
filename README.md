@@ -7,5 +7,5 @@ Modding project for Moonlight Peaks.
 ### [BiggerStacks](BiggerStacks/README.md)
 Mod to increase item stack sizes in the game.
 
-### [EnergyPlus](EnergyPlus/README.md)
-Mod to adjust energy consumption.
+### [ManaPlus](ManaPlus/README.md)
+Mod to manage mana consumption.

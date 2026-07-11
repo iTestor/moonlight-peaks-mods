@@ -19,6 +19,9 @@ This mod removes the crafting time, allowing you to craft items instantly.
 ## Configuration
 Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. 
 
+**Available Settings:**
+- `InstantEnabled`: Enable or disable instant crafting. Default: True.
+
 *Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
 
 ---

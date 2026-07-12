@@ -18,6 +18,11 @@ A BepInEx 5.4.x (x64) mod for Moonlight Peaks to customize fishing spawn rates.
 ## Configuration
 Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. 
 
+**Available Settings per Fish:**
+- `Override`: Enable or disable custom spawn rates (true = Custom, false = Default).
+- `SpawnChance`: Adjust spawn chance (Range: 0 to 100).
+- `MaxLimit`: Set the maximum limit for a fish (0, 1, 2...).
+
 *Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
 
 ⚠️ **IMPORTANT NOTE ON INITIAL CONFIGURATION:**

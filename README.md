@@ -18,3 +18,6 @@ Mod to make all crafting recipes instantaneous.
 
 ### [NeverEndingCan](NeverEndingCan/README.md)
 Mod to make the watering can never run out of water.
+
+### [FishingPlus](FishingPlus/README.md)
+Mod to customize fishing spawn rates.

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantCrafting", "InstantC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverEndingCan", "NeverEndingCan\NeverEndingCan.csproj", "{A2749E11-B3F9-4485-8C4B-110B4F848CDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishingPlus", "FishingPlus\FishingPlus.csproj", "{3B38EA9D-77C8-4561-B21D-3A31FDED5881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuri.SRDebugger", "Kuri.SRDebugger\Kuri.SRDebugger.csproj", "{A6969A52-7153-4E57-9269-05BAFD7A274A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{A2749E11-B3F9-4485-8C4B-110B4F848CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2749E11-B3F9-4485-8C4B-110B4F848CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2749E11-B3F9-4485-8C4B-110B4F848CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B38EA9D-77C8-4561-B21D-3A31FDED5881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B38EA9D-77C8-4561-B21D-3A31FDED5881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B38EA9D-77C8-4561-B21D-3A31FDED5881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B38EA9D-77C8-4561-B21D-3A31FDED5881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6969A52-7153-4E57-9269-05BAFD7A274A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6969A52-7153-4E57-9269-05BAFD7A274A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6969A52-7153-4E57-9269-05BAFD7A274A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6969A52-7153-4E57-9269-05BAFD7A274A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

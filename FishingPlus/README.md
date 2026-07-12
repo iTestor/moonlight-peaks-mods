@@ -16,7 +16,12 @@ A BepInEx 5.4.x (x64) mod for Moonlight Peaks to customize fishing spawn rates.
 3. Extract the contents into your `MoonlightPeaks/BepInEx/plugins/` folder.
 
 ## Configuration
-Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. 
+Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the BepInEx Configuration Manager (default hotkey: F1).
+Alternatively, you can edit the generated configuration file located in `MoonlightPeaks/BepInEx/config/`.
+
+**Available Settings Global:**
+- `RespawnIntervalMinutes`: Respawn interval in minutes, applies to ALL fish with an active override. (lower = spawns more often)
+- `EnableDebugLogging`: Enables verbose debug logging for troubleshooting. Keep this disabled during normal play - enabling it produces a lot of log output and can spam the debug console.
 
 **Available Settings per Fish:**
 - `Override`: Enable or disable custom spawn rates (true = Custom, false = Default).
@@ -24,14 +29,6 @@ Upon first run, the mod will generate a configuration file located at `Moonlight
 - `MaxLimit`: Set the maximum limit for a fish (0, 1, 2...).
 
 *Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
-
-⚠️ **IMPORTANT NOTE ON INITIAL CONFIGURATION:**
-When you start the game with this mod for the first time, the in-game menu (F1) will display placeholder values. This is completely normal, as the game only provides the original spawn rates when the map is loaded.
-
-**How to set it up:**
-1. Start the game and load your save file normally.
-2. The mod will automatically read the original vanilla fish spawn rates in the background when you enter a map and save them permanently to your `.cfg` file.
-3. From that moment on, you will have access to the real default values in the F1 menu `(or .cfg-file)` (and at every future game start) and can adjust them as you like using the sliders!
 
 ---
 *Built with BepInEx.*

@@ -27,14 +27,14 @@
 Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the [b]Configuration Manager[/b] (default hotkey: [i]F1[/i]).
 Alternatively, you can edit the generated configuration file located in [i]MoonlightPeaks/BepInEx/config/[/i].
 
-[b]⚠️ IMPORTANT NOTE ON INITIAL CONFIGURATION:[/b]
+[size=5][color=#6F51B1][b]⚠️ IMPORTANT NOTE ON INITIAL CONFIGURATION:[/b][/color][/size]
 When you start the game with this mod for the first time, the in-game menu (F1) will display placeholder values. This is completely normal, as the game only provides the original spawn rates when the map is loaded.
 
 [b]How to set it up:[/b]
 [list=1]
 [*]Start the game and load your save file normally.[/*]
 [*]The mod will automatically read the original vanilla fish spawn rates in the background when you enter a map and save them permanently to your [i].cfg[/i] file.[/*]
-[*]From that moment on, you will have access to the real default values in the F1 menu (and at every future game start) and can adjust them as you like using the sliders![/*]
+[*]From that moment on, you will have access to the real default values in the F1 menu [i](or .cfg-file)[/i] (and at every future game start) and can adjust them as you like using the sliders![/*]
 [/list]
 
 [line]

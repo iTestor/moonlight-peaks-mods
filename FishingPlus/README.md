@@ -26,7 +26,7 @@ When you start the game with this mod for the first time, the in-game menu (F1) 
 **How to set it up:**
 1. Start the game and load your save file normally.
 2. The mod will automatically read the original vanilla fish spawn rates in the background when you enter a map and save them permanently to your `.cfg` file.
-3. From that moment on, you will have access to the real default values in the F1 menu (and at every future game start) and can adjust them as you like using the sliders!
+3. From that moment on, you will have access to the real default values in the F1 menu `(or .cfg-file)` (and at every future game start) and can adjust them as you like using the sliders!
 
 ---
 *Built with BepInEx.*

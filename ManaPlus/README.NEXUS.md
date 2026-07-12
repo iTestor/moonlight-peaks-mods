@@ -25,7 +25,7 @@
 
 [size=4][color=#6F51B1][b]Configuration[/b][/color][/size]
 Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the [b]Configuration Manager[/b] (default hotkey: [i]F1[/i]).
-Alternatively, you can edit the generated configuration file located in [i]MoonlightPeaks/BepInEx/config/[i].
+Alternatively, you can edit the generated configuration file located in [i]MoonlightPeaks/BepInEx/config/[/i].
 
 [color=#6F51B1][b]Available Settings:[/b][/color]
 [list]

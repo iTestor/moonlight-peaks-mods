@@ -1,10 +1,12 @@
 # InstantCrafting
 
-A BepInEx 5.4.x (x64) mod for Moonlight Peaks to make all crafting recipes instantaneous.
-This mod removes the crafting time, allowing you to craft items instantly.
+A BepInEx 5.4.x (x64) mod for Moonlight Peaks to make all crafting, cooking, and brewing recipes instantaneous.
+This mod removes the crafting time, allowing you to craft, cook, and brew items instantly.
 
 ## Features
 - **Instant Crafting:** All items are crafted immediately without delay.
+- **Instant Cooking:** All food is cooked immediately.
+- **Instant Brewing:** All potions/drinks are brewed immediately.
 - **Configurable:** Fine-tune the behavior in-game using the BepInEx Configuration Manager.
 
 ## Requirements
@@ -20,7 +22,9 @@ This mod removes the crafting time, allowing you to craft items instantly.
 Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. 
 
 **Available Settings:**
-- `InstantEnabled`: Enable or disable instant crafting. Default: True.
+- `Instant Crafting`: Enable or disable instant crafting. Default: True.
+- `Instant Cooking`: Enable or disable instant cooking. Default: True.
+- `Instant Brewing`: Enable or disable instant brewing. Default: True.
 
 *Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
 

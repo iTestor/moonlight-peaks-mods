@@ -1,6 +1,6 @@
 # FishingPlus
 
-A BepInEx 5.4.x (x64) mod for Moonlight Peaks to customize fishing spawn rates.
+A mod to customize fishing spawn rates, with Live GUI.
 
 ## Features
 - **Spawn Rate Customization:** Adjust the spawning frequency of various fish species.

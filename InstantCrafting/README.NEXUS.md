@@ -1,12 +1,14 @@
 [center][size=5]InstantCrafting[/size][/center]
 
-[b]This mod removes the crafting time, allowing you to craft items instantly.[/b]
+[b]This mod removes the crafting time, allowing you to craft, cook, and brew items instantly.[/b]
 
 [line]
 
 [size=4][color=#6F51B1][b]Features[/b][/color][/size]
 [list]
 [*][b]Instant Crafting:[/b] All items are crafted immediately without delay.[/*]
+[*][b]Instant Cooking:[/b] All food is cooked immediately.[/*]
+[*][b]Instant Brewing:[/b] All potions/drinks are brewed immediately.[/*]
 [*][b]Configurable:[/b] Fine-tune the behavior in-game using the BepInEx Configuration Manager.[/*]
 [/list]
 
@@ -29,7 +31,9 @@ Alternatively, you can edit the generated configuration file located in [i]Moonl
 
 [color=#6F51B1][b]Available Settings:[/b][/color]
 [list]
-[*][b]InstantEnabled:[/b] Enable or disable instant crafting. Default: True.[/*]
+[*][b]Instant Crafting:[/b] Enable or disable instant crafting. Default: True.[/*]
+[*][b]Instant Cooking:[/b] Enable or disable instant cooking. Default: True.[/*]
+[*][b]Instant Brewing:[/b] Enable or disable instant brewing. Default: True.[/*]
 [/list]
 
 [line]

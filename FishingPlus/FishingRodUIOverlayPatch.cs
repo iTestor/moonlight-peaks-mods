@@ -21,7 +21,7 @@ namespace FishingPlus
         {
             if (__instance.GrabbedItemView == null)
             {
-                Plugin._logger.LogDebug("[FishingPlus] ShowGrabbedItemScreenIfNeeded: GrabbedItemView ist null.");
+                Plugin.LogDebug("[FishingPlus] ShowGrabbedItemScreenIfNeeded: GrabbedItemView ist null.");
                 HideFishingUI();
                 return;
             }
@@ -32,7 +32,7 @@ namespace FishingPlus
                 var toolTypes = AddressableLibrary<ToolTypeLibrary>.Instance;
                 if (toolTypes != null && itemAsset.ToolAddon.ToolType == toolTypes.FishingRod)
                 {
-                    Plugin._logger.LogDebug("[FishingPlus] Angel aktiv. Zeige eigene UI an...");
+                    Plugin.LogDebug("[FishingPlus] Angel aktiv. Zeige eigene UI an...");
                     ShowFishingUI();
                     return;
                 }
@@ -45,7 +45,7 @@ namespace FishingPlus
         [HarmonyPrefix]
         public static void PrefixDestroy()
         {
-            Plugin._logger.LogDebug("[FishingPlus] Gegenstand weggesteckt. Eigene UI ausblenden.");
+            Plugin.LogDebug("[FishingPlus] Gegenstand weggesteckt. Eigene UI ausblenden.");
             HideFishingUI();
         }
 

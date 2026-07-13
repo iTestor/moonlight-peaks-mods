@@ -163,9 +163,8 @@ namespace FishingPlus
                 // GetEffectiveMaxLimit zwingt bei SpawnChance=0 auf 0, was hier eine
                 // Division-durch-0/undefinierte Anzeige erzeugen würde, obwohl noch
                 // "übrig gebliebene" Fische von vor der Sperre sichtbar sein sollen.
-                int maxLimit = FishConfigManager.SpawnMaxConfigs.TryGetValue(assetName, out var maxCfg)
-                    ? maxCfg.Value
-                    : 0;
+                object liveMaxLimitObj = ReflectionHelpers.GetPropertyValue(spawnConfig, "RespawnPopulationMax");
+                int maxLimit = liveMaxLimitObj != null ? Mathf.RoundToInt(Convert.ToSingle(liveMaxLimitObj)) : 0;
 
                 // PERCENT% = der LIVE-Wert auf dem spawnConfig-Objekt selbst
                 // (RespawnRarity.RespawnIntervalChance), NICHT der Wert aus dem Config-Menü.
@@ -183,11 +182,9 @@ namespace FishingPlus
                     if (liveChanceObj != null)
                         liveChance01 = Convert.ToSingle(liveChanceObj);
                 }
-                int chancePercent = Mathf.RoundToInt(liveChance01 * 100f);
-                string percentText = $"{chancePercent}%";
 
                 string cleanName = assetName.Replace("Item_Fish_", "").Replace("_", " ");
-                _fishToDisplay.Add($"{cleanName} ({instantiatedCount}/{maxLimit}) {percentText}");
+                _fishToDisplay.Add($"{cleanName} ({instantiatedCount} / {maxLimit})");
             }
 
             Plugin.LogDebug($"[FishingUIComponent] List refreshed: {_fishToDisplay.Count} (Spawner InstanceID: {spawner.GetInstanceID()}).");

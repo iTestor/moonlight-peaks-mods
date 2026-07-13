@@ -16,6 +16,17 @@ namespace FishingPlus
         private static readonly HashSet<object> patchedConfigs =
             new HashSet<object>(ReferenceEqualityComparer.Instance);
 
+        // IMPORTANT: es kann mehrere EntityFishSpawner gleichzeitig geben (z.B. mehrere
+        // Regionen/Räume, die parallel geladen sind). Ein einzelnes statisches Feld, das bei
+        // jedem Setup()-Aufruf überschrieben wird, zeigt daher NICHT zuverlässig auf den
+        // Spawner, in dessen Bereich der Spieler sich gerade aufhält - sondern nur auf den
+        // zuletzt initialisierten. Wir merken uns deshalb ALLE bisher gesehenen Spawner und
+        // wählen bei Bedarf (siehe GetNearestActiveSpawner) den räumlich passenden aus.
+        private static readonly HashSet<EntityFishSpawner> activeSpawners =
+            new HashSet<EntityFishSpawner>();
+
+        private static EntityFishSpawner spawnerInstance;
+
         [HarmonyTargetMethod]
         private static MethodBase TargetMethod()
         {
@@ -38,6 +49,14 @@ namespace FishingPlus
             try
             {
                 FishConfigManager.InitializeAllFishConfigs();
+                spawnerInstance = __instance as EntityFishSpawner;
+
+                if (spawnerInstance != null)
+                {
+                    activeSpawners.Add(spawnerInstance);
+                    Plugin.LogDebug($"[FishSpawnPatch] Spawner zur aktiven Liste hinzugefügt (InstanceID: {spawnerInstance.GetInstanceID()}). Aktive Spawner insgesamt: {activeSpawners.Count}.");
+                }
+
                 ApplyFishOverrides(__instance);
             }
             catch (Exception ex)
@@ -264,6 +283,44 @@ namespace FishingPlus
             string oldName = (oldValue as UnityEngine.Object)?.name ?? oldValue?.ToString() ?? "null";
             string newName = (newValue as UnityEngine.Object)?.name ?? newValue?.ToString() ?? "null";
             Plugin.LogDebug($"[FishSpawnPatch] ({context}) {obj.GetType().Name}.{propName}: '{oldName}' -> '{newName}'");
+        }
+
+        public static HashSet<object> GetLoadedConfigs()
+        {
+            return patchedConfigs;
+        }
+
+        public static EntityFishSpawner GetSpawnerInstance()
+        {
+            return spawnerInstance;
+        }
+
+        /// <summary>
+        /// Liefert von allen bisher über Setup() erfassten Spawnern denjenigen, der räumlich am
+        /// nächsten an referencePosition liegt (z.B. Kamera-/Spielerposition). Bereinigt dabei
+        /// nebenbei zerstörte/entladene Spawner-Referenzen aus der internen Liste (Unity's
+        /// überladener ==-Operator erkennt "kaputte" MonoBehaviour-Referenzen zuverlässig als
+        /// null, auch wenn das C#-Objekt selbst noch existiert). Gibt null zurück, wenn aktuell
+        /// kein Spawner bekannt ist.
+        /// </summary>
+        public static EntityFishSpawner GetNearestActiveSpawner(Vector3 referencePosition)
+        {
+            activeSpawners.RemoveWhere(s => s == null);
+
+            EntityFishSpawner nearest = null;
+            float nearestSqrDist = float.MaxValue;
+
+            foreach (EntityFishSpawner spawner in activeSpawners)
+            {
+                float sqrDist = (spawner.transform.position - referencePosition).sqrMagnitude;
+                if (sqrDist < nearestSqrDist)
+                {
+                    nearestSqrDist = sqrDist;
+                    nearest = spawner;
+                }
+            }
+
+            return nearest;
         }
     }
 }

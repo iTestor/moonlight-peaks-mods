@@ -215,7 +215,17 @@ namespace FishingPlus
                     Plugin.LogDebug($"[FishSpawnPatch] '{assetName}': RespawnRarity is null, skipping interval/chance.");
                 }
 
-                appliedCount++;
+                object directorCheckEventObj = ReflectionHelpers.GetPropertyValue(spawnConfig, "DirectorCheckEvent");
+                if (directorCheckEventObj != null)
+                {
+                    ReflectionHelpers.SetMemberValue(spawnConfig, "DirectorCheckEvent", null);
+                    Plugin.LogDebug($"[FishSpawnPatch] '{assetName}': DirectorCheckEvent set to null (Biom-/Location-Check is skipped entirely for this fish -> the flag remains set to true permanently).");
+                } else
+                {
+                    Plugin.LogDebug($"[FishSpawnPatch] '{assetName}': DirectorCheckEvent is already null, no change needed.");
+                }
+
+                    appliedCount++;
             }
 
             Plugin.LogDebug($"[FishSpawnPatch] Done. Total configs={totalCount}, applied={appliedCount}, unknown={skippedUnknown}, override-off={skippedOverrideOff}, already-patched={skippedAlready}.");
@@ -293,6 +303,11 @@ namespace FishingPlus
         public static EntityFishSpawner GetSpawnerInstance()
         {
             return spawnerInstance;
+        }
+
+        internal static IEnumerable<EntityFishSpawner> GetAllActiveSpawners()
+        {
+            return activeSpawners; // die private Liste, die im Log "Aktive Spawner insgesamt: X" befüllt
         }
 
         /// <summary>

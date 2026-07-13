@@ -17,26 +17,28 @@ namespace FishingPlus
         private static string[] fishAssetNames = new string[]
         {
             "Item_Fish_Amour",
-            "Item_Fish_Daybreaker",
             "Item_Fish_Brickle",
-            "Item_Fish_Furybud",
+            "Item_Fish_Daybreaker",
             "Item_Fish_Fortipod",
-            "Item_Fish_Goldy",
-            "Item_Fish_Gnasher",
-            "Item_Fish_GloyGloy",
-            "Item_Fish_Glibby",
+            "Item_Fish_Furybud",
             "Item_Fish_Glammer",
-            "Item_Fish_Orbis",
-            "Item_Fish_Mouthout",
-            "Item_Fish_Moonflutter",
-            "Item_Fish_Leftsee",
+            "Item_Fish_Glibby",
+            "Item_Fish_GloyGloy",
+            "Item_Fish_Gnasher",
+            "Item_Fish_Goldy",
             "Item_Fish_Goliath",
-            "Item_Fish_Whisper",
-            "Item_Fish_Violet",
-            "Item_Fish_Twilight",
-            "Item_Fish_Splotch",
+            "Item_Fish_Leftsee",
+            "Item_Fish_Missing",
+            "Item_Fish_Moonflutter",
+            "Item_Fish_Mouthout",
+            "Item_Fish_Orbis",
+            "Item_Fish_Skullfin",
             "Item_Fish_Snuffy",
-            "Item_Fish_Skullfin"
+            "Item_Fish_Splotch",
+            "Item_Fish_Twilight",
+            "Item_Fish_Violet",
+            "Item_Fish_Whisper"
+
         };
 
         public static void InitializeAllFishConfigs()

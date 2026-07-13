@@ -17,7 +17,7 @@ A mod to customize fishing spawn rates, with Live GUI.
 3. Extract the contents into your `MoonlightPeaks/BepInEx/plugins/` folder.
 
 ## Configuration
-Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the BepInEx Configuration Manager (default hotkey: F1).
+Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the BepInEx Configuration Manager (default hotkey: F1). The configuration is sorted alphabetically for easier navigation.
 Alternatively, you can edit the generated configuration file located in `MoonlightPeaks/BepInEx/config/`.
 
 **Available Settings Global:**

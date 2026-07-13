@@ -110,85 +110,54 @@ namespace FishingPlus
         /// tauchen also weiterhin korrekt in der Liste auf, solange sie physisch existieren.
         /// </summary>
         private void RefreshFishList()
+{
+    _fishToDisplay.Clear();
+
+    // Statt nur eines Spawners: über alle iterieren und pro Fisch aggregieren
+    var counts = new Dictionary<string, (int instantiated, int maxLimit)>();
+
+    foreach (EntityFishSpawner spawner in FishSpawnPatch.GetAllActiveSpawners())
+    {
+        FieldInfo spawnConfigsField = ReflectionHelpers.FindFieldInHierarchy(spawner.GetType(), "spawnConfigs");
+        FieldInfo spawnEntriesField = ReflectionHelpers.FindFieldInHierarchy(spawner.GetType(), "spawnEntries");
+        if (spawnConfigsField == null || spawnEntriesField == null) continue;
+
+        if (!(spawnConfigsField.GetValue(spawner) is IEnumerable configList)) continue;
+        IDictionary spawnEntries = spawnEntriesField.GetValue(spawner) as IDictionary;
+
+        foreach (object spawnConfig in configList)
         {
-            _fishToDisplay.Clear();
+            if (spawnConfig == null) continue;
 
-            EntityFishSpawner spawner = ResolveTargetSpawner();
-            if (spawner == null)
+            object itemAssetObj = ReflectionHelpers.GetPropertyValue(spawnConfig, "SpawnItemAsset");
+            if (!(itemAssetObj is UnityEngine.Object itemAssetUnityObj)) continue;
+
+            string assetName = itemAssetUnityObj.name;
+            if (!FishConfigManager.OverrideFishConfigs.ContainsKey(assetName)) continue;
+
+            int instantiatedCount = 0;
+            if (spawnEntries != null && spawnEntries.Contains(spawnConfig))
             {
-                Plugin.LogDebug("[FishingUIComponent] No active EntityFishSpawner found nearby, list will remain empty.");
-                return;
+                object spawnEntry = spawnEntries[spawnConfig];
+                instantiatedCount = ReflectionHelpers.GetCollectionCount(spawnEntry, "InstantiatedSpawns");
             }
 
-            FieldInfo spawnConfigsField = ReflectionHelpers.FindFieldInHierarchy(spawner.GetType(), "spawnConfigs");
-            FieldInfo spawnEntriesField = ReflectionHelpers.FindFieldInHierarchy(spawner.GetType(), "spawnEntries");
+            object liveMaxLimitObj = ReflectionHelpers.GetPropertyValue(spawnConfig, "RespawnPopulationMax");
+            int maxLimit = liveMaxLimitObj != null ? Mathf.RoundToInt(Convert.ToSingle(liveMaxLimitObj)) : 0;
 
-            if (spawnConfigsField == null || spawnEntriesField == null)
-            {
-                Plugin.LogDebug("[FishingUIComponent] Field 'spawnConfigs' or 'spawnEntries' not found, cannot populate list.");
-                return;
-            }
-
-            if (!(spawnConfigsField.GetValue(spawner) is IEnumerable configList))
-            {
-                Plugin.LogDebug("[FishingUIComponent] 'spawnConfigs' is not iterable or null.");
-                return;
-            }
-
-            IDictionary spawnEntries = spawnEntriesField.GetValue(spawner) as IDictionary;
-
-            foreach (object spawnConfig in configList)
-            {
-                if (spawnConfig == null)
-                    continue;
-
-                object itemAssetObj = ReflectionHelpers.GetPropertyValue(spawnConfig, "SpawnItemAsset");
-                if (!(itemAssetObj is UnityEngine.Object itemAssetUnityObj))
-                    continue;
-
-                string assetName = itemAssetUnityObj.name;
-
-                // Nur Fische anzeigen, die dieses Plugin überhaupt kennt/verwaltet.
-                if (!FishConfigManager.OverrideFishConfigs.ContainsKey(assetName))
-                    continue;
-
-                int instantiatedCount = 0;
-                if (spawnEntries != null && spawnEntries.Contains(spawnConfig))
-                {
-                    object spawnEntry = spawnEntries[spawnConfig];
-                    instantiatedCount = ReflectionHelpers.GetCollectionCount(spawnEntry, "InstantiatedSpawns");
-                }
-
-                // Bewusst das ROH-konfigurierte MaxLimit (nicht GetEffectiveMaxLimit) als Nenner:
-                // GetEffectiveMaxLimit zwingt bei SpawnChance=0 auf 0, was hier eine
-                // Division-durch-0/undefinierte Anzeige erzeugen würde, obwohl noch
-                // "übrig gebliebene" Fische von vor der Sperre sichtbar sein sollen.
-                object liveMaxLimitObj = ReflectionHelpers.GetPropertyValue(spawnConfig, "RespawnPopulationMax");
-                int maxLimit = liveMaxLimitObj != null ? Mathf.RoundToInt(Convert.ToSingle(liveMaxLimitObj)) : 0;
-
-                // PERCENT% = der LIVE-Wert auf dem spawnConfig-Objekt selbst
-                // (RespawnRarity.RespawnIntervalChance), NICHT der Wert aus dem Config-Menü.
-                // Diese beiden können auseinanderlaufen: FishSpawnPatch/
-                // FishRespawnPopulationMaxSyncPatch schreiben den Config-Wert erst live auf das
-                // Objekt, wenn der Override aktiv ist bzw. beim nächsten Tick nachgezogen wird -
-                // und bei deaktiviertem Override steht dort der vanilla-Originalwert, nicht der
-                // (dann irrelevante) Konfig-Wert. Wir lesen also exakt das, was UpdateSpawns()
-                // tatsächlich für den Respawn-Roll verwendet.
-                object respawnRarity = ReflectionHelpers.GetPropertyValue(spawnConfig, "RespawnRarity");
-                float liveChance01 = 0f;
-                if (respawnRarity != null)
-                {
-                    object liveChanceObj = ReflectionHelpers.GetPropertyValue(respawnRarity, "RespawnIntervalChance");
-                    if (liveChanceObj != null)
-                        liveChance01 = Convert.ToSingle(liveChanceObj);
-                }
-
-                string cleanName = assetName.Replace("Item_Fish_", "").Replace("_", " ");
-                _fishToDisplay.Add($"{cleanName} ({instantiatedCount} / {maxLimit})");
-            }
-
-            Plugin.LogDebug($"[FishingUIComponent] List refreshed: {_fishToDisplay.Count} (Spawner InstanceID: {spawner.GetInstanceID()}).");
+            if (counts.TryGetValue(assetName, out var existing))
+                counts[assetName] = (existing.instantiated + instantiatedCount, existing.maxLimit + maxLimit);
+            else
+                counts[assetName] = (instantiatedCount, maxLimit);
         }
+    }
+
+    foreach (var kvp in counts)
+    {
+        string cleanName = kvp.Key.Replace("Item_Fish_", "").Replace("_", " ");
+        _fishToDisplay.Add($"{cleanName} ({(kvp.Value.maxLimit > 0 ? kvp.Value.instantiated : 0)} / {kvp.Value.maxLimit})");
+    }
+}
 
         /// <summary>
         /// Wählt den für die UI relevanten Spawner aus: den räumlich nächsten aktiven

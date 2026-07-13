@@ -4,6 +4,7 @@ A BepInEx 5.4.x (x64) mod for Moonlight Peaks to customize fishing spawn rates.
 
 ## Features
 - **Spawn Rate Customization:** Adjust the spawning frequency of various fish species.
+- **Live GUI:** The mod provides a live GUI that displays all fish present in the current area, showing their current counts, maximum limits, and spawn chances: `Name (Current/Max) Chance%`.
 - **Configurable:** Fine-tune the balance in-game using the BepInEx Configuration Manager.
 
 ## Requirements

@@ -32,6 +32,11 @@
 		  <HintPath>$(GameDataDir)\Managed\littlechickengamecompany.chicken-utilities.runtime.dll</HintPath>
 		  <Private>False</Private>
 	  </Reference>
+
+	  <Reference Include="littlechickengamecompany.chicken-ui.runtime">
+		  <HintPath>$(GameDataDir)\Managed\littlechickengamecompany.chicken-ui.runtime.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
   </ItemGroup>
 
 	<Target Name="CopyPluginToGame" AfterTargets="Build" Condition="Exists('$(GameDir)\BepInEx\plugins')">

@@ -19,6 +19,7 @@ namespace InstantCrafting
         public static ConfigEntry<bool> InstantCrafting;
         public static ConfigEntry<bool> InstantCooking;
         public static ConfigEntry<bool> InstantBrewing;
+        public static ConfigEntry<bool> InstantProduction;
 
         private void Awake()
         {
@@ -29,6 +30,7 @@ namespace InstantCrafting
             InstantCrafting = Config.Bind("General", "Instant Crafting", true, "Enable or disable instant crafting.");
             InstantCooking = Config.Bind("General", "Instant Cooking", true, "Enable or disable instant cooking.");
             InstantBrewing = Config.Bind("General", "Instant Brewing", true, "Enable or disable instant brewing.");
+            InstantProduction = Config.Bind("General", "Instant Production", true, "Enable or disable instant production. For e.g. Refinery, Press, Seed Sequencer, Chocolatier and so on..");
 
             _harmony = new Harmony("dev.kuri.moonlightpeaks.instantcrafting");
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
@@ -38,6 +40,39 @@ namespace InstantCrafting
         {
             var field = obj.GetType().GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             field?.SetValue(obj, value);
+        }
+    }
+
+    [HarmonyPatch]
+    public static class BaseResourceConverterViewPatch
+    {
+        [HarmonyTargetMethod]
+        public static MethodBase TargetMethod()
+        {
+            return AccessTools.Method(typeof(BaseResourceConverterView), "UpdateProductionProgress");
+        }
+
+        [HarmonyPrefix]
+        public static bool Prefix(BaseResourceConverterView __instance)
+        {
+            if (!Plugin.InstantProduction.Value) return true;
+            if (!__instance.IsProducingItems) return true;
+
+            __instance.Inventory.UpdateProgress(999999f, 9999, out bool flag);
+
+            if (flag) __instance.ResourceConverterPersistence.UpdateActiveProducingItem();
+
+            if (__instance.IsProducingItems)
+            {
+                __instance.Invoke("HandleProductionUpdate", 0f);
+            }
+            else
+            {
+                AccessTools.Method(typeof(BaseResourceConverterView), "HandleProductionEnd")
+                           .Invoke(__instance, null);
+            }
+
+            return false;
         }
     }
 

@@ -1,6 +1,6 @@
 [center][size=5]InstantCrafting[/size][/center]
 
-[b]This mod removes the crafting time, allowing you to craft, cook, and brew items instantly.[/b]
+[b]This mod removes the waiting time, allowing you to craft, cook, brew, and produce items instantly.[/b]
 
 [line]
 
@@ -9,6 +9,7 @@
 [*][b]Instant Crafting:[/b] All items are crafted immediately without delay.[/*]
 [*][b]Instant Cooking:[/b] All food is cooked immediately.[/*]
 [*][b]Instant Brewing:[/b] All potions/drinks are brewed immediately.[/*]
+[*][b]Instant Production:[/b] All production machines (Refinery, Press, Seed Sequencer, Chocolatier, etc.) process items immediately.[/*]
 [*][b]Configurable:[/b] Fine-tune the behavior in-game using the BepInEx Configuration Manager.[/*]
 [/list]
 
@@ -34,6 +35,7 @@ Alternatively, you can edit the generated configuration file located in [i]Moonl
 [*][b]Instant Crafting:[/b] Enable or disable instant crafting. Default: True.[/*]
 [*][b]Instant Cooking:[/b] Enable or disable instant cooking. Default: True.[/*]
 [*][b]Instant Brewing:[/b] Enable or disable instant brewing. Default: True.[/*]
+[*][b]Instant Production:[/b] Enable or disable instant production (Refinery, Press, Seed Sequencer, Chocolatier, etc.). Default: True.[/*]
 [/list]
 
 [line]

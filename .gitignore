@@ -22,3 +22,7 @@ packages/
 # Releases
 Release/
 TempZip/
+
+# Affinity Designer
+*.afdesign
+*.afdesign~lock~

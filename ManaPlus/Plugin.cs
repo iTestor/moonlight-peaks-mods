@@ -55,8 +55,8 @@ namespace ManaPlus
                 "Mana Drain Multiplier",
                 1,
                 new ConfigDescription(
-                    "Mana drain from 0 to 10. 0 = Infinite mana, 10 = Normal Drain * 10.",
-                    new AcceptableValueRange<int>(0, 10)
+                    "Mana drain from 0 to 8. 0 = Infinite mana, 8 = Normal Drain * 8.",
+                    new AcceptableValueRange<int>(0, 8)
                 )
             );
 
@@ -65,8 +65,8 @@ namespace ManaPlus
                 "Mana Gain Multiplier",
                 1,
                 new ConfigDescription(
-                    "Mana gain from 0 to 10. 0 = No mana gain, 10 = Normal Gain * 10.",
-                    new AcceptableValueRange<int>(0, 10)
+                    "Mana gain from 0 to 8. 0 = No mana gain, 8 = Normal Gain * 8.",
+                    new AcceptableValueRange<int>(0, 8)
                 )
             );
 

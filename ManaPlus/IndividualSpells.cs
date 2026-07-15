@@ -50,7 +50,7 @@ namespace ManaPlus
                             defaultCost,
                             new ConfigDescription(
                                 $"Mana cost for casting {cleanName}.",
-                                new AcceptableValueRange<int>(0, 10)
+                                new AcceptableValueRange<int>(0, 8)
                             )
                         );
 

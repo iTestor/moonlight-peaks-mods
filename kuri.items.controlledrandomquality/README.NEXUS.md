@@ -1,12 +1,12 @@
 [center][size=5]Controlled Random Quality[/size][/center]
 
-[b]A BepInEx 5.4.x (x64) mod for Moonlight Peaks to control the quality level of generated items.[/b]
+[b]A BepInEx 5.4.x (x64) mod for Moonlight Peaks to control the quality level of items with random quality.[/b]
 
 [line]
 
 [size=4][color=#6F51B1][b]Features[/b][/color][/size]
 [list]
-[*][b]Quality Control:[/b] Force specific quality levels (Standard, Silver, Gold, etc.) for any item generated in the game.[/*]
+[*][b]Quality Control:[/b] Force specific quality levels (Standard, Silver, Gold, etc.) for items that usually have random quality.[/*]
 [*][b]Maintain Randomness:[/b] Option to keep the default game randomness for quality.[/*]
 [*][b]Configurable:[/b] Easily change settings in-game using the BepInEx Configuration Manager.[/*]
 [/list]

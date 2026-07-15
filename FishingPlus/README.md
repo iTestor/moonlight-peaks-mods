@@ -21,8 +21,9 @@ Upon first run, the mod will generate a configuration file. You can easily edit 
 Alternatively, you can edit the generated configuration file located in `MoonlightPeaks/BepInEx/config/`.
 
 **Available Settings Global:**
-- `RespawnIntervalMinutes`: Respawn interval in minutes, applies to ALL fish with an active override. (lower = spawns more often)
 - `EnableDebugLogging`: Enables verbose debug logging for troubleshooting. Keep this disabled during normal play - enabling it produces a lot of log output and can spam the debug console.
+- `RespawnIntervalMinutes`: Respawn interval in minutes, applies to ALL fish with an active override. (lower = spawns more often)
+- `SkipFishPresentItemAnimation`: If enabled, the game will skip the 'fish present' animation.
 
 **Available Settings per Fish:**
 - `Override`: Enable or disable custom spawn rates (true = Custom, false = Default).

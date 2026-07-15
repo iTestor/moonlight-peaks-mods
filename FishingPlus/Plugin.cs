@@ -19,6 +19,7 @@ namespace FishingPlus
 
         public static ConfigEntry<int> RespawnIntervalMinutes;
         public static ConfigEntry<bool> EnableDebugLogging;
+        public static ConfigEntry<bool> SkipFishPresentItemAnimation;
 
         private void Awake()
         {
@@ -45,6 +46,15 @@ namespace FishingPlus
                 new ConfigDescription(
                     "Enables verbose debug logging for troubleshooting. Keep this disabled during normal play - " +
                     "enabling it produces a lot of log output and can spam the debug console."
+                )
+            );
+
+            SkipFishPresentItemAnimation = Config.Bind(
+                "1. Global",
+                "SkipFishPresentItemAnimation",
+                false,
+                new ConfigDescription(
+                    "If enabled, the game will skip the 'fish present' animation. "
                 )
             );
 

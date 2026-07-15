@@ -307,6 +307,7 @@ namespace FishingPlus
 
         internal static IEnumerable<EntityFishSpawner> GetAllActiveSpawners()
         {
+            activeSpawners.RemoveWhere(s => s == null);
             return activeSpawners; // die private Liste, die im Log "Aktive Spawner insgesamt: X" befüllt
         }
 

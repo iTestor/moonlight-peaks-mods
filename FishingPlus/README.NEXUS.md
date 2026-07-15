@@ -31,8 +31,9 @@ Alternatively, you can edit the generated configuration file located in [i]Moonl
 
 [color=#6F51B1][b]Available Settings Global:[/b][/color]
 [list]
-[*][b]RespawnIntervalMinutes:[/b] Respawn interval in minutes, applies to ALL fish with an active override. (lower = spawns more often)[/*]
 [*][b]EnableDebugLogging:[/b] Enables verbose debug logging for troubleshooting. Keep this disabled during normal play - enabling it produces a lot of log output and can spam the debug console.[/*]
+[*][b]RespawnIntervalMinutes:[/b] Respawn interval in minutes, applies to ALL fish with an active override. (lower = spawns more often)[/*]
+[*][b]SkipFishPresentItemAnimation:[/b] If enabled, the game will skip the 'fish present' animation.[/*]
 [/list]
 
 [color=#6F51B1][b]Available Settings per Fish:[/b][/color]

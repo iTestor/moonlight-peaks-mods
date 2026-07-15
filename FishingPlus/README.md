@@ -4,7 +4,8 @@ A mod to customize fishing spawn rates, with Live GUI.
 
 ## Features
 - **Spawn Rate Customization:** Adjust the spawning frequency of various fish species.
-- **Live GUI:** The mod provides a live GUI that displays all fish present in the current area, showing their current counts and maximum limits: `Name (Current/Max)`.
+- **Skip Animation:** Optional setting to skip the 'fish present' animation for faster fishing.
+- **Live GUI:** The mod provides a live GUI that displays all fish present in the current area, showing their current counts, maximum limits, and spawn chances: `Name (Current/Max) Chance%`.
 - **Configurable:** Fine-tune the balance in-game using the BepInEx Configuration Manager.
 
 ## Requirements

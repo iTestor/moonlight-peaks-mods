@@ -28,7 +28,7 @@
 Upon first run, the mod will generate a configuration file. You can easily edit these values in-game by opening the [b]Configuration Manager[/b] (default hotkey: [i]F1[/i]).
 Alternatively, you can edit the generated configuration file located in [i]MoonlightPeaks/BepInEx/config/[/i].
 
-[b]Available Settings:[/b]
+[color=#6F51B1][b]Available Settings:[/b][/color]
 [list]
 [*][b]Quality Override:[/b] Choose which quality level should be forced when an item is generated. Set to 'Random' to keep normal game randomness.[/*]
 [/list]

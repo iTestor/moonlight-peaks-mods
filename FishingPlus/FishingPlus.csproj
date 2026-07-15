@@ -38,8 +38,8 @@
 		  <Private>False</Private>
 	  </Reference>
 
-	  <Reference Include="SRDebugger">
-		  <HintPath>$(GameDataDir)\Managed\StompyRobot.SRDebugger.dll</HintPath>
+	  <Reference Include="DOTween">
+		  <HintPath>$(GameDataDir)\Managed\DOTween.dll</HintPath>
 		  <Private>False</Private>
 	  </Reference>
   </ItemGroup>

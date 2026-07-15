@@ -29,8 +29,11 @@ Alternatively, you can edit the generated configuration file located in [i]Moonl
 
 [color=#6F51B1][b]Available Settings:[/b][/color]
 [list]
-[*][b]ManaDrainMultiplier:[/b] Mana drain (Range: 0 to 10). 0 = Infinite mana, 10 = Normal Drain * 10. Default: 1.[/*]
-[*][b]ManaGainMultiplier:[/b] Mana gain (Range: 0 to 10). 0 = No mana gain, 10 = Normal Gain * 10. Default: 1.[/*]
+[*][b]Enable ManaPlus:[/b] If true, the Mana Gain/Drain Multiplier mod is active. If false, the mod is disabled. Default: True.[/*]
+[*][b]Mana Drain Individual:[/b] If true, each spell will have its own mana drain multiplier. If false, the global multiplier will be used. Default: False.[/*]
+[*][b]Mana Drain Multiplier:[/b] Mana drain (Range: 0 to 10). 0 = Infinite mana, 10 = Normal Drain * 10. Default: 1.[/*]
+[*][b]Mana Gain Multiplier:[/b] Mana gain (Range: 0 to 10). 0 = No mana gain, 10 = Normal Gain * 10. Default: 1.[/*]
+[*][b]Individual Spells/Ethereal Spells:[/b] Mana cost for casting individual spells or ethereal spells (Range: 0 to 10). Default: Varies per spell.[/*]
 [/list]
 
 [line]

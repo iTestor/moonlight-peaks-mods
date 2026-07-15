@@ -1,8 +1,11 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ManaPlus
 {
@@ -12,8 +15,14 @@ namespace ManaPlus
         internal static ManualLogSource _logger;
         internal static Harmony _harmony;
 
+        public static ConfigEntry<bool> ManaPlusIsActive;
+        public static ConfigEntry<bool> ManaDrainIndividual;
         public static ConfigEntry<int> ManaDrainMultiplier;
         public static ConfigEntry<int> ManaGainMultiplier;
+
+        public static ConfigFile _config;
+
+        public static ItemAsset CurrentCastingSpell = null;
 
         private void Awake()
         {
@@ -21,9 +30,29 @@ namespace ManaPlus
             _logger = base.Logger;
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
+            _config = Config;
+
+            ManaPlusIsActive = Config.Bind(
+                "1. Global",
+                "Enable",
+                true,
+                new ConfigDescription(
+                    "If true, the Mana Gain/Drain Multiplier mod is active. If false, the mod is disabled."
+                )
+            );
+
+            ManaDrainIndividual = Config.Bind(
+                "1. Global",
+                "Mana Drain Individual",
+                false,
+                new ConfigDescription(
+                    "If true, each spell will have its own mana drain multiplier. If false, the global multiplier will be used."
+                )
+            );
+
             ManaDrainMultiplier = Config.Bind(
-                "Gameplay",
-                "ManaDrainMultiplier",
+                "2. Global Multiplier",
+                "Mana Drain Multiplier",
                 1,
                 new ConfigDescription(
                     "Mana drain from 0 to 10. 0 = Infinite mana, 10 = Normal Drain * 10.",
@@ -32,8 +61,8 @@ namespace ManaPlus
             );
 
             ManaGainMultiplier = Config.Bind(
-                "Gameplay",
-                "ManaGainMultiplier",
+                "2. Global Multiplier",
+                "Mana Gain Multiplier",
                 1,
                 new ConfigDescription(
                     "Mana gain from 0 to 10. 0 = No mana gain, 10 = Normal Gain * 10.",
@@ -41,30 +70,10 @@ namespace ManaPlus
                 )
             );
 
+            SceneManager.sceneLoaded += IndividualSpells.OnSceneLoaded;
+
             _harmony = new Harmony("dev.kuri.moonlightpeaks.manaplus");
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
-        }
-    }
-
-    [HarmonyPatch(typeof(PlayerPersistence), "SubstractMana")]
-    static class PlayerPersistence_SubstractMana_Patch
-    {
-        static bool Prefix(ref float amount)
-        {
-            amount = amount * Plugin.ManaDrainMultiplier.Value;
-
-            return true;
-        }
-    }
-
-    [HarmonyPatch(typeof(PlayerPersistence), "AddMana")]
-    static class PlayerPersistence_AddMana_Patch
-    {
-        static bool Prefix(ref float amount)
-        {
-            amount = amount * Plugin.ManaGainMultiplier.Value;
-
-            return true;
         }
     }
 }

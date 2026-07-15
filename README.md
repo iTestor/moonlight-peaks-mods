@@ -24,3 +24,6 @@ Mod to customize fishing spawn rates.
 
 ### [AutoWin](kuri.nokturna.autowin/README.md)
 Mod to automatically win the Nokturna mini-game.
+
+### [Controlled Random Quality](kuri.items.controlledrandomquality/README.md)
+Mod to control the quality level of generated items.

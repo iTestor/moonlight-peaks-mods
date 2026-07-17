@@ -20,8 +20,9 @@ This mod provides tools to customize the energy usage of your character, allowin
 Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. 
 
 **Available Settings:**
-- `EnergyDrainMultiplier`: Energy drain (Range: 0 to 10). 0 = Infinite energy, 10 = Normal Drain * 10. Default: 1.
-- `EnergyGainMultiplier`: Energy gain (Range: 0 to 10). 0 = No energy gain, 10 = Normal Gain * 10. Default: 1.
+- `Enable`: If true, the EnergyPlus mod is active. If false, the mod is disabled. Default: True.
+- `Energy Drain (in %)`: Set the energy drain in percent. 0% is infinite energy, 100% is vanilla, 200% is double consumption (Range: 0 to 1000). Default: 100.
+- `Energy Gain (in %)`: Set the energy gain in percent. 100% is vanilla, 500% is five times the gain (Range: 0 to 1000). Default: 100.
 
 *Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
 

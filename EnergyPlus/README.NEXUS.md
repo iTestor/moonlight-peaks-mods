@@ -29,8 +29,9 @@ Alternatively, you can edit the generated configuration file located in [i]Moonl
 
 [color=#6F51B1][b]Available Settings:[/b][/color]
 [list]
-[*][b]EnergyDrainMultiplier:[/b] Energy drain (Range: 0 to 10). 0 = Infinite energy, 10 = Normal Drain * 10. Default: 1.[/*]
-[*][b]EnergyGainMultiplier:[/b] Energy gain (Range: 0 to 10). 0 = No energy gain, 10 = Normal Gain * 10. Default: 1.[/*]
+[*][b]Enable:[/b] If true, the EnergyPlus mod is active. If false, the mod is disabled. Default: True.[/*]
+[*][b]Energy Drain (in %):[/b] Set the energy drain in percent. 0% is infinite energy, 100% is vanilla, 200% is double consumption (Range: 0 to 1000). Default: 100.[/*]
+[*][b]Energy Gain (in %):[/b] Set the energy gain in percent. 100% is vanilla, 500% is five times the gain (Range: 0 to 1000). Default: 100.[/*]
 [/list]
 
 [line]

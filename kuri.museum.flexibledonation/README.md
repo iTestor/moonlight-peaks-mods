@@ -1,27 +1,21 @@
-# FlexibleDonation
+# Museum Flexible Donation
 
-A BepInEx 5.4.x (x64) mod for Moonlight Peaks that allows for flexible donation options.
+A quality-of-life mod for the Museum that removes strict quality restrictions and optimizes the donation process.
 
 ## Features
-- **Flexible Donations:** Customize donation amounts and options.
-- **Configurable:** Enable or disable the mod in-game using the BepInEx Configuration Manager.
+- **Flexible Donations:** You can donate items of *any* quality level to the museum.
+- **Smart Inventory Scan:** The mod automatically checks your inventory for available qualities in ascending order (from lowest to highest).
+
+## Known Visual Bug
+- When inspecting a slot, the floating tooltip title for the item may still display quality stars based on the museum's default requirements, even if you are donating a different quality. This is purely cosmetic and does not affect donations.
 
 ## Requirements
 - [BepInEx 5.4.x (x64)](https://github.com/BepInEx/BepInEx/releases)
-- [Optional: BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases)
 
 ## Installation
 1. Ensure [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx/releases) is installed in your Moonlight Peaks game folder.
 2. Download the mod.
 3. Extract the contents into your `MoonlightPeaks/BepInEx/plugins/` folder.
-
-## Configuration
-Upon first run, the mod will generate a configuration file located at `MoonlightPeaks/BepInEx/config/`. 
-
-**Available Settings:**
-- `Enabled`: Enable or disable the mod. Default: True.
-
-*Optional: Use [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) to edit settings conveniently in-game (default hotkey: F1).*
 
 ---
 *Built with BepInEx.*

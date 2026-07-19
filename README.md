@@ -29,7 +29,7 @@ Mod to automatically win the Nokturna mini-game.
 Mod to control and override the current weather conditions.
 
 ### [FlexibleDonation](kuri.museum.flexibledonation/README.md)
-Mod to control the quality level of generated items.
+Mod for the Museum that removes strict quality restrictions and optimizes the donation process.
 
 ### [Controlled Random Quality](kuri.items.controlledrandomquality/README.md)
 Mod to control the quality level of generated items.

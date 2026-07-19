@@ -12,6 +12,9 @@ namespace ManaPlus
     internal class IndividualSpells
     {
         public static Dictionary<string, ConfigEntry<int>> SpellConfigs = new Dictionary<string, ConfigEntry<int>>();
+        public static Dictionary<string, float> defaultCosts = new Dictionary<string, float>();
+        public static Dictionary<string, ItemAsset> spells = new Dictionary<string, ItemAsset>();
+
         private static bool _spellsInitialized = false;
 
         public static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -35,6 +38,16 @@ namespace ManaPlus
                     if (internalName.IndexOf("demo", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         continue;
+                    }
+
+                    if (!defaultCosts.ContainsKey(internalName))
+                    {
+                        defaultCosts[internalName] = item.SpellAddon != null ? item.SpellAddon.ManaUsage : 3f;
+                    }
+
+                    if(!spells.ContainsKey(internalName))
+                    {
+                        spells[internalName] = item;
                     }
 
                     if (!SpellConfigs.ContainsKey(internalName))

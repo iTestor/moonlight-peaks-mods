@@ -29,6 +29,7 @@ namespace Kuri.SRDebugger
             // Ich benutze hier mal das Update-Event, da du vorhin F9 erwähnt hast
             if (UnityEngine.Input.GetKeyDown(KeyCode.F9))
             {
+                DumperItems.DumpItemsToWiki();
                 TriggerMenu();
             }
         }

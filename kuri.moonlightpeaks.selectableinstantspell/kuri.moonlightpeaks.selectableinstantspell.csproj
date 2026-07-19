@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>EnergyPlus</AssemblyName>
-    <Product>EnergyPlus</Product>
-    <Version>1.1.0</Version>
+    <AssemblyName>kuri.moonlightpeaks.selectableinstantspell</AssemblyName>
+    <Product>Selectable Instant Spell</Product>
+    <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
@@ -12,7 +12,8 @@
       https://nuget.bepinex.dev/v3/index.json;
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
-    <RootNamespace>EnergyPlus</RootNamespace>
+    <RootNamespace>kuri.moonlightpeaks.selectableinstantspell</RootNamespace>
+
 	  <GameDir Condition="'$(GameDir)' == ''">K:\SteamLibrary\steamapps\common\Moonlight Peaks</GameDir>
 	  <GameDataDir Condition="'$(GameDataDir)' == ''">$(GameDir)\Moonlight Peaks_Data</GameDataDir>
   </PropertyGroup>
@@ -25,6 +26,16 @@
 
 	  <Reference Include="Vampire.Runtime">
 		  <HintPath>$(GameDataDir)\Managed\Vampire.Runtime.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
+
+	  <Reference Include="littlechickengamecompany.chicken-utilities.runtime">
+		  <HintPath>$(GameDataDir)\Managed\littlechickengamecompany.chicken-utilities.runtime.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
+
+	  <Reference Include="Unity.Addressables">
+		  <HintPath>$(GameDataDir)\Managed\Unity.Addressables.dll</HintPath>
 		  <Private>False</Private>
 	  </Reference>
   </ItemGroup>

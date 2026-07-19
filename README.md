@@ -28,5 +28,8 @@ Mod to automatically win the Nokturna mini-game.
 ### [Weather Manipulator](kuri.weather.manipulator/README.md)
 Mod to control and override the current weather conditions.
 
+### [FlexibleDonation](kuri.museum.flexibledonation/README.md)
+Mod to control the quality level of generated items.
+
 ### [Controlled Random Quality](kuri.items.controlledrandomquality/README.md)
 Mod to control the quality level of generated items.

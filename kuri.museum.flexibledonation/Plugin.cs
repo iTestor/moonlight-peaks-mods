@@ -12,15 +12,12 @@ namespace kuri.museum.flexibledonation
         internal static ManualLogSource _logger;
         internal static Harmony _harmony;
 
-        public static ConfigEntry<bool> Enabled;
 
         private void Awake()
         {
             // Plugin startup logic
             _logger = base.Logger;
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
-
-            Enabled = Config.Bind("General", "Enabled", true, "Enable or disable the plugin.");
 
             _harmony = new Harmony("dev.kuri.moonlightpeaks.controlledrandomquality");
             _harmony.PatchAll(Assembly.GetExecutingAssembly());

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -36,6 +36,16 @@
 
 	  <Reference Include="littlechickengamecompany.chicken-ui.runtime">
 		  <HintPath>$(GameDataDir)\Managed\littlechickengamecompany.chicken-ui.runtime.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
+
+	  <Reference Include="UnityEngine.UI">
+		  <HintPath>$(GameDataDir)\Managed\UnityEngine.UI.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
+
+	  <Reference Include="Unity.TextMeshPro">
+		  <HintPath>$(GameDataDir)\Managed\Unity.TextMeshPro.dll</HintPath>
 		  <Private>False</Private>
 	  </Reference>
   </ItemGroup>

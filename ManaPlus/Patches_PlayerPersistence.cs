@@ -40,6 +40,21 @@ namespace ManaPlus
             {
                 return;
             }
+
+            if (Patches_MoveGridObjectSpellDecorateStateMachineContext.ManipulateMoveGrid)
+            {
+                var spell = Patches_MoveGridObjectSpellDecorateStateMachineContext.spellAsset;
+                if (spell != null)
+                {
+                    if (Plugin.ManaDrainIndividual.Value)
+                    {
+                        amount = IndividualSpells.GetCostForSpell(spell.Item);
+
+                        return;
+                    }
+                }
+            }
+
             amount = amount * Plugin.ManaGainMultiplier.Value;
         }
     }

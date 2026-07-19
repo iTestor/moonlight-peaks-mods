@@ -110,6 +110,22 @@ namespace ManaPlus
 
             return itemAsset.SpellAddon != null ? (float)itemAsset.SpellAddon.ManaUsage : 0f;
         }
+
+        public static float GetCostForSpell(string internalName)
+        {
+            if (string.IsNullOrEmpty(internalName)) return 0f;
+            if (SpellConfigs.TryGetValue(internalName, out var configEntry))
+            {
+                return (float)configEntry.Value;
+            }
+
+            if (defaultCosts.TryGetValue(internalName, out var defaultCost))
+            {
+                return defaultCost;
+            }
+
+            return 0f;
+        }
     }
 
 }

@@ -4,7 +4,7 @@
 
 Modding project for Moonlight Peaks.
 
-## Mods in this repository
+## My Mods on Nexus
 
 ### [BiggerStacks](BiggerStacks/README.md)
 Mod to increase item stack sizes in the game.

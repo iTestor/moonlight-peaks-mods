@@ -1,5 +1,7 @@
 # Moonlight Peaks Mods
 
+[![Discord](https://img.shields.io/discord/1509618823618363585?color=5865F2&logo=discord&logoColor=white&label=Quantum%20Community)](https://discord.gg/2F6VXeZYHK)
+
 Modding project for Moonlight Peaks.
 
 ## Mods in this repository

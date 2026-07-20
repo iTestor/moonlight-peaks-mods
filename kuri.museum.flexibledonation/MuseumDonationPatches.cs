@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Chicken.UI;
 using Chicken.Utilities;
 using HarmonyLib;
-using kuri.museum.flexibledonation;
 
 [HarmonyPatch]
 public class MuseumDonationPatches
 {
-    private static bool showStars = true;
+    private static bool manipulateInfo = false;
 
     private static ItemQualityLevel? FindAvailableQuality(ItemAsset item, int amountNeeded)
     {
@@ -68,7 +66,7 @@ public class MuseumDonationPatches
     [HarmonyPrefix]
     public static void UI_Show_Prefix(ItemRequirementInfoDisplay __instance, ItemAsset itemAsset, ref ItemQualityLevel itemQualityLevel)
     {
-        if (itemAsset != null && itemAsset.MuseumEntryAddon != null)
+        if (itemAsset != null && itemAsset.MuseumEntryAddon != null && manipulateInfo)
         {
             var available = FindAvailableQuality(itemAsset, itemAsset.MuseumEntryAddon.AmountNeeded);
 
@@ -93,23 +91,23 @@ public class MuseumDonationPatches
     [HarmonyPrefix]
     public static void MuseumWidget_Prefix()
     {
-        showStars = false;
+        manipulateInfo = true;
     }
 
     [HarmonyPatch(typeof(MuseumInfoEntryListWidget), "UpdateVisual")]
     [HarmonyPostfix]
     public static void MuseumWidget_Postfix()
     {
-        showStars = true;
+        manipulateInfo = false;
     }
 
     [HarmonyPatch(typeof(ItemInfoWidget), "Show", new[] { typeof(ItemAsset), typeof(ItemQualityLevel) })]
     [HarmonyPrefix]
     public static void HideStarsInMuseum_Prefix(ItemInfoWidget __instance, ItemAsset itemAsset)
     {
-        if (itemAsset != null && itemAsset.MuseumEntryAddon != null)
+        if (itemAsset != null && itemAsset.MuseumEntryAddon != null && manipulateInfo)
         {
-            __instance.ToggleDisplay<ItemQualityInfoDisplay>(showStars);
+            __instance.ToggleDisplay<ItemQualityInfoDisplay>(false);
         }
     }
 

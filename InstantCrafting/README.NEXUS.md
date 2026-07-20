@@ -42,3 +42,4 @@ Alternatively, you can edit the generated configuration file located in [i]Moonl
 
 [i]Built with BepInEx.[/i]
 [i]Source code available on [url=https://github.com/iTestor/moonlight-peaks-mods]GitHub[/url].[/i]
+[i][url=https://discord.gg/2F6VXeZYHK]Community Discord[/url].[/i]

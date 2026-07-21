@@ -24,6 +24,8 @@ namespace kuri.items.controlledrandomquality
 
         public static ConfigEntry<ConfigQualityOverride> QualityOverrideConfig;
 
+        public static ConfigEntry<bool> ResetBuggedLostItemQuests;
+
         private void Awake()
         {
             // Plugin startup logic
@@ -31,44 +33,21 @@ namespace kuri.items.controlledrandomquality
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
             QualityOverrideConfig = Config.Bind(
-                "General",
+                "1. General",
                 "Quality Override",
                 ConfigQualityOverride.Random,
                 "Choose which quality level should be forced when an item is generated. Set to 'Random' to keep normal game randomness."
             );
 
+            ResetBuggedLostItemQuests = Config.Bind(
+                "2. Fixes",
+                "Reset Bugged Lost Item Quests",
+                true,
+                "If enabled, it will clear the lost item quests and their associated items. You can get this quest new on the JobBoard."
+            );
+
             _harmony = new Harmony("dev.kuri.moonlightpeaks.controlledrandomquality");
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
-        }
-    }
-
-    [HarmonyPatch(typeof(GlobalSettingsLibrary), "GetRandomizedItemQualityLevel")]
-    public static class ControlledRandomQualityPatch
-    {
-        [HarmonyPrefix]
-        public static bool Prefix(ref ItemQualityLevel __result)
-        {
-            ConfigQualityOverride selectedOverride = Plugin.QualityOverrideConfig.Value;
-
-            if (selectedOverride == ConfigQualityOverride.Random)
-            {
-                return true;
-            }
-
-            switch (selectedOverride)
-            {
-                case ConfigQualityOverride.Regular:
-                    __result = ItemQualityLevel.Regular;
-                    break;
-                case ConfigQualityOverride.Good:
-                    __result = ItemQualityLevel.Good;
-                    break;
-                case ConfigQualityOverride.Perfect:
-                    __result = ItemQualityLevel.Perfect;
-                    break;
-            }
-
-            return false;
         }
     }
 }

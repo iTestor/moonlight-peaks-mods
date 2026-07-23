@@ -15,57 +15,67 @@ namespace kuri.moonlightpeaks.critterplus
     public static class CritterNetUIOverlayPatch
     {
         private static CritterUIComponent _uiComponent;
+        private static PlayerEquipment _playerEquipment;
 
         [HarmonyPatch(typeof(PlayerEquipment), "ShowGrabbedItemScreenIfNeeded")]
         [HarmonyPostfix]
         public static void PostfixShowScreen(PlayerEquipment __instance)
         {
+            _playerEquipment = __instance;
+
             if (__instance.GrabbedItemView == null)
             {
-                Plugin.LogDebug("[CritterPlus] ShowGrabbedItemScreenIfNeeded: GrabbedItemView ist null.");
-                HideCritterUI();
+                Plugin.LogDebug("[CritterPlus] ShowGrabbedItemScreenIfNeeded: GrabbedItemView is null.");
+                UpdateUIState(false);
                 return;
             }
 
-            var itemAsset = __instance.GrabbedItemView.ItemAsset;
-            if (itemAsset != null && itemAsset.ToolAddon != null)
+            if(isToolLActive())
             {
-                var toolTypes = AddressableLibrary<ToolTypeLibrary>.Instance;
-                if (toolTypes != null && itemAsset.ToolAddon.ToolType == toolTypes.Net)
-                {
-                    Plugin.LogDebug("[CritterPlus] Angel aktiv. Zeige eigene UI an...");
-                    ShowCritterUI();
-                    return;
-                }
+                Plugin.LogDebug("[CritterPlus] Net active. show own GUI...");
+                UpdateUIState(Plugin.ShowPopulationGUI.Value);
+                return;
             }
 
-            HideCritterUI();
+            UpdateUIState(false);
         }
 
         [HarmonyPatch(typeof(PlayerEquipment), "DestroyGrabbedItem")]
         [HarmonyPrefix]
         public static void PrefixDestroy()
         {
-            Plugin.LogDebug("[CritterPlus] Gegenstand weggesteckt. Eigene UI ausblenden.");
-            HideCritterUI();
+            Plugin.LogDebug("[CritterPlus] Hide custom UI.");
+            UpdateUIState(false);
         }
 
-        private static void ShowCritterUI()
+        public static bool isToolLActive()
         {
-            if (_uiComponent == null)
+            var itemAsset = _playerEquipment?.GrabbedItemView?.ItemAsset;
+            if (itemAsset != null && itemAsset.ToolAddon != null)
+            {
+                var toolTypes = AddressableLibrary<ToolTypeLibrary>.Instance;
+                if (toolTypes != null && itemAsset.ToolAddon.ToolType == toolTypes.Net)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static void UpdateUIState(bool? show = null)
+        {
+            // Erstellen, falls noch nicht vorhanden und wir sie anzeigen wollen (oder toggeln)
+            if (_uiComponent == null && (show == true || show == null))
             {
                 GameObject uiObject = new GameObject("CritterPlus_UI");
                 UnityEngine.Object.DontDestroyOnLoad(uiObject);
                 _uiComponent = uiObject.AddComponent<CritterUIComponent>();
             }
-            _uiComponent.IsEnabled = true;
-        }
 
-        private static void HideCritterUI()
-        {
             if (_uiComponent != null)
             {
-                _uiComponent.IsEnabled = false;
+                // Wenn 'show' übergeben wurde, nutze den Wert. Wenn null, invertiere den aktuellen Status (Toggle).
+                _uiComponent.IsEnabled = show ?? !_uiComponent.IsEnabled;
             }
         }
     }
@@ -99,7 +109,7 @@ namespace kuri.moonlightpeaks.critterplus
             }
             catch (Exception ex)
             {
-                Plugin._logger.LogError($"[CritterUIComponent] Fehler beim Aktualisieren der Fischliste: {ex}");
+                Plugin._logger.LogError($"[CritterUIComponent] Error updating the critter list: {ex}");
             }
         }
 

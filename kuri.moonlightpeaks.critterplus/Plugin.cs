@@ -3,6 +3,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using UnityEngine;
 
 namespace kuri.moonlightpeaks.critterplus
 {
@@ -16,6 +17,8 @@ namespace kuri.moonlightpeaks.critterplus
         public static ConfigEntry<int> RespawnIntervalMinutes;
         public static ConfigEntry<bool> EnableDebugLogging;
         public static ConfigEntry<bool> SkipPresentItemAnimation;
+        public static ConfigEntry<bool> ShowPopulationGUI;
+        public static ConfigEntry<KeyboardShortcut> TogglePopulationGuiHotkey;
 
         private void Awake()
         {
@@ -54,12 +57,42 @@ namespace kuri.moonlightpeaks.critterplus
                 )
             );
 
+            ShowPopulationGUI = Config.Bind(
+                "1. Global",
+                "ShowPopulationGui",
+                true,
+                new ConfigDescription("If enabled, displays a live GUI overlay on the screen showing current critter populations and max limits")
+            );
+
+            TogglePopulationGuiHotkey = Config.Bind(
+                "1. Global",
+                "ToggleGuiHotkey",
+                new KeyboardShortcut(KeyCode.O),
+                new ConfigDescription("Hotkey to quickly toggle the Critter GUI overlay on or off.")
+            );
+
+            ShowPopulationGUI.SettingChanged += ShowPopulationGUI_SettingChanged;
+
             CritterConfigManager.InitializeAllConfigs();
 
             _harmony = new Harmony("dev.kuri.moonlightpeaks.critterplus");
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             LogAppliedPatches();
+        }
+
+        private void Update()
+        {
+            if (TogglePopulationGuiHotkey.Value.IsDown())
+            {
+                ShowPopulationGUI.Value = !ShowPopulationGUI.Value;
+                if (CritterNetUIOverlayPatch.isToolLActive()) CritterNetUIOverlayPatch.UpdateUIState(ShowPopulationGUI.Value);
+            }
+        }
+
+        private void ShowPopulationGUI_SettingChanged(object sender, System.EventArgs e)
+        {
+            if(CritterNetUIOverlayPatch.isToolLActive()) CritterNetUIOverlayPatch.UpdateUIState(ShowPopulationGUI.Value);
         }
 
         internal static void LogDebug(string message)

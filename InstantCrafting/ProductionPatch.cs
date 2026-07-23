@@ -8,6 +8,19 @@ using HarmonyLib;
 
 namespace InstantCrafting
 {
+    //-- Mana Extractor Patch
+    [HarmonyPatch(typeof(ManaExtractorPersistence.ExtractEntry), nameof(ManaExtractorPersistence.ExtractEntry.IsDone))]
+    public static class ManaExtractor_IsDone_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ref bool __result)
+        {
+            // Erzwingt, dass die Extraktion immer sofort als fertig (true) gilt
+            if (Plugin.InstantProduction.Value) __result = true;
+        }
+    }
+
+    //-- BaseResourceConverterView Patch
     [HarmonyPatch]
     public static class BaseResourceConverterViewPatch
     {

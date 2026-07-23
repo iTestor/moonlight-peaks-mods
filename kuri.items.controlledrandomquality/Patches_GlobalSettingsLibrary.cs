@@ -19,7 +19,14 @@ namespace kuri.items.controlledrandomquality
 
                 ConfigQualityOverride selectedOverride = Plugin.QualityOverrideConfig.Value;
 
+                // --- RANDOM OVERRIDE CHECK ---
                 if (selectedOverride == ConfigQualityOverride.Random)
+                {
+                    return true;
+                }
+
+                // --- ITEM USES QUALITIES CHECK ---
+                if (!itemAsset.UsesQualities)
                 {
                     return true;
                 }

@@ -4,7 +4,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 
-namespace FishingPlus
+namespace kuri.moonlightpeaks.critterplus
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin
@@ -15,7 +15,7 @@ namespace FishingPlus
 
         public static ConfigEntry<int> RespawnIntervalMinutes;
         public static ConfigEntry<bool> EnableDebugLogging;
-        public static ConfigEntry<bool> SkipFishPresentItemAnimation;
+        public static ConfigEntry<bool> SkipPresentItemAnimation;
 
         private void Awake()
         {
@@ -24,13 +24,13 @@ namespace FishingPlus
             // Plugin startup logic
             _logger = base.Logger;
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
-            
+
             RespawnIntervalMinutes = Config.Bind(
                 "1. Global",
                 "RespawnIntervalMinutes",
                 30,
                 new ConfigDescription(
-                    "Respawn interval in minutes, applies to ALL fish with an active override. (lower = spawns more often)",
+                    "Respawn interval in minutes, applies to ALL critter with an active override. (lower = spawns more often)",
                     new AcceptableValueRange<int>(1, 1440)
                 )
             );
@@ -45,18 +45,18 @@ namespace FishingPlus
                 )
             );
 
-            SkipFishPresentItemAnimation = Config.Bind(
+            SkipPresentItemAnimation = Config.Bind(
                 "1. Global",
-                "SkipFishPresentItemAnimation",
+                "SkipPresentItemAnimation",
                 false,
                 new ConfigDescription(
-                    "If enabled, the game will skip the 'fish present' animation. "
+                    "If enabled, the game will skip the 'present' animation. "
                 )
             );
 
-            FishConfigManager.InitializeAllFishConfigs();
+            CritterConfigManager.InitializeAllConfigs();
 
-            _harmony = new Harmony("dev.kuri.moonlightpeaks.fishingplus");
+            _harmony = new Harmony("dev.kuri.moonlightpeaks.critterplus");
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             LogAppliedPatches();
@@ -65,12 +65,12 @@ namespace FishingPlus
         internal static void LogDebug(string message)
         {
             if (EnableDebugLogging != null && EnableDebugLogging.Value)
-                _logger.LogInfo(message);
+                _logger.LogInfo($"[CritterPlus] {message}");
         }
 
         /// <summary>
         /// Debug-Hilfe: listet alle über diese Harmony-Instanz aktiven Patches
-        /// samt Ziel-Methode im Log auf, damit man sofort sieht, ob FishSpawnPatch gegriffen hat.
+        /// samt Ziel-Methode im Log auf, damit man sofort sieht, ob CritterSpawnPatch gegriffen hat.
         /// </summary>
         private void LogAppliedPatches()
         {

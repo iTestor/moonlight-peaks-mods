@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>kuri.museum.flexibledonation</AssemblyName>
-    <Product>Museum Flexible Donation</Product>
-    <Version>1.1.0</Version>
+    <AssemblyName>kuri.moonlightpeaks.critterplus</AssemblyName>
+    <Product>CritterPlus</Product>
+    <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
@@ -12,8 +12,7 @@
       https://nuget.bepinex.dev/v3/index.json;
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
-    <RootNamespace>kuri.museum.flexibledonation</RootNamespace>
-
+    <RootNamespace>kuri.moonlightpeaks.critterplus</RootNamespace>
 	  <GameDir Condition="'$(GameDir)' == ''">K:\SteamLibrary\steamapps\common\Moonlight Peaks</GameDir>
 	  <GameDataDir Condition="'$(GameDataDir)' == ''">$(GameDir)\Moonlight Peaks_Data</GameDataDir>
   </PropertyGroup>
@@ -23,7 +22,7 @@
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
     <PackageReference Include="UnityEngine.Modules" Version="6000.3" IncludeAssets="compile" />
-	  
+
 	  <Reference Include="Vampire.Runtime">
 		  <HintPath>$(GameDataDir)\Managed\Vampire.Runtime.dll</HintPath>
 		  <Private>False</Private>
@@ -39,13 +38,8 @@
 		  <Private>False</Private>
 	  </Reference>
 
-	  <Reference Include="UnityEngine.UI">
-		  <HintPath>$(GameDataDir)\Managed\UnityEngine.UI.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-
-	  <Reference Include="Unity.TextMeshPro">
-		  <HintPath>$(GameDataDir)\Managed\Unity.TextMeshPro.dll</HintPath>
+	  <Reference Include="DOTween">
+		  <HintPath>$(GameDataDir)\Managed\DOTween.dll</HintPath>
 		  <Private>False</Private>
 	  </Reference>
   </ItemGroup>

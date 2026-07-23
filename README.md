@@ -24,6 +24,9 @@ Mod to make the watering can never run out of water.
 ### [FishingPlus](FishingPlus/README.md)
 Mod to customize fishing spawn rates.
 
+### [CritterPlus](kuri.moonlightpeaks.critterplus/README.md)
+Mod to customize critters spawn rates.
+
 ### [AutoWin](kuri.nokturna.autowin/README.md)
 Mod to automatically win the Nokturna mini-game.
 

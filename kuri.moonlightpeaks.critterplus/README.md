@@ -1,11 +1,11 @@
 # CritterPlus
 
-A mod to customize critter spawn rates, with Live GUI.
+Take full control over critter spawn rates, skip catching animations, and track live local spawns.
 
 ## Features
 - **Spawn Rate Customization:** Adjust the spawning frequency of various critter species.
 - **Skip Animation:** Optional setting to skip the 'present' animation for faster catch.
-- **Live GUI:** The mod provides a live GUI that displays all critter present in the current area, showing their current counts, maximum limits, and spawn chances: `Name (Current/Max) Chance%`.
+- **Live GUI:** The mod provides a live GUI that displays all critters present in the current area, showing their current counts and maximum limits: `Name (Current/Max)`.
 - **Configurable:** Fine-tune the balance in-game using the BepInEx Configuration Manager.
 
 ## Requirements
@@ -23,7 +23,7 @@ Alternatively, you can edit the generated configuration file located in `Moonlig
 
 **Available Settings Global:**
 - `EnableDebugLogging`: Enables verbose debug logging for troubleshooting. Keep this disabled during normal play - enabling it produces a lot of log output and can spam the debug console.
-- `RespawnIntervalMinutes`: Respawn interval in minutes, applies to ALL critter with an active override. (lower = spawns more often)
+- `RespawnIntervalMinutes`: Respawn interval in minutes, applies to ALL critters with an active override. (lower = spawns more often)
 - `SkipPresentItemAnimation`: If enabled, the game will skip the 'present' animation.
 
 **Available Settings per Critter:**
